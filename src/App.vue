@@ -1,18 +1,28 @@
 <template>
   <div id="app">
     <Navbar/>
+
     <div class="container">
       <div class="card card-body">
         <h1>Pesquisar repositorios</h1>
         <p class="lead">digite o nome do repositorio que você deseja</p>
         <input @keyup="getUser" class="form-control" id="search" type="text" required>
       </div>
+
+  <div  v-if="user.length !== 0" class="row mt-3"> 
+    <div class="col-md-4">
+      <profile :user="user"/>
+    </div>
+
+  </div>
     </div>
   </div>
 </template>
 
 <script>
 import Navbar from'./components/Navbar.vue';
+import Profile from'./components/Profile.vue';
+
 import axios from "axios";
 
 export default {
@@ -31,14 +41,15 @@ export default {
     }
   },
   components:{
-    Navbar
+    Navbar,
+    Profile
   },
   methods:{
     getUser(e){
       const user = e.target.value;
       const {url,client_id,client_secret,count,sort} = this.github
       axios.get(`${url}/${user}?client_id=${client_id}&client_secret=${client_secret}`) 
-      .then(({data})=>this.user = console.log(data))
+      .then(({data})=>this.user = (this.user = data))
     }
   }
 }
