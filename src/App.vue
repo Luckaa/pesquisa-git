@@ -1,28 +1,36 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Navbar/>
+    <div class="container">
+      <div class="card card-body">
+        <h1>Pesquisar repositorios</h1>
+        <p class="lead">digite o nome do repositorio que você deseja</p>
+        <input class="form-control" id="search" type="text" required>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Navbar from'./components/Navbar.vue';
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data(){
+    return{
+      github:{
+        url:'',
+        client_id:'',
+        client_secret:'',
+        count: 7,
+        sort:'created: asc'
+      }
+    }
+  },
+  components:{
+    Navbar
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+
