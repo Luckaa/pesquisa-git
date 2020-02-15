@@ -7,10 +7,10 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Repositórios: <span class="badge-success">{{user.public_repos}}</span></li>
                         <li class="list-group-item">Seguidores: <span class="badge-primary">{{user.followers}}</span></li>
-                        <li class="list-group-item">Seguindo: <span class="badge-info">{{user.following}}</span></li>
+                        <li class="list-group-item">Seguindo: <span class="badge-info">{{user.following}}</span></li>                    
                     </ul>
                     <div class="card-body">
-                        <a :href="user.html_url" class="btn btn-success btn-block">Ver Perfil</a>
+                        <a :href="user.html_url"  target="_blank" class="btn btn-success btn-block">Ver Perfil</a>
                     </div>
                 </div>
             </div>

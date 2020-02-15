@@ -3,11 +3,13 @@
     <Navbar/>
 
     <div class="container">
-      <div class="card card-body">
-        <h1>Usuarios</h1>
-        <p class="lead">digite o nome do Usuario que você deseja pesquisar</p>
-        <input @keyup="getUser" class="form-control" id="search" type="text" required>
-      </div>
+
+
+        <div class="card card-body">
+          <h1>Usuarios</h1>
+          <p class="lead">digite o nome do Usuario que você deseja pesquisar</p>
+          <input @keyup="getUser" class="form-control" id="search" type="text" required>
+        </div>
 
   <div  v-if="user.length !== 0" class="row mt-3"> 
     <div class="col-md-4">
@@ -17,10 +19,7 @@
     <div class="col-md-8">
       <Repo v-for="repo in repos" :key="repo" :repo="repo"/>
     </div>
-
-
-
-  </div>
+    </div>
     </div>
   </div>
 </template>
@@ -32,6 +31,7 @@ import Repo from'./components/Repo.vue';
 
 
 import axios from "axios";
+
 
 export default {
   name: 'App',
