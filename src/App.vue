@@ -7,14 +7,8 @@
   
 
     <h5>Lista de  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Favoritos</a></h5>
-  
-     
-    </div>
 
-    <div class="row mt-3">
-
-
-        <div v-if="visibilidadeUser !== false" class="card card-body">
+    <div v-if="visibilidadeUser !== false" class="card card-body">
           <h1>Usuarios</h1>
           <p class="lead">digite o nome do usuario que você deseja pesquisar</p>
           <input @keyup="getUser" class="form-control" id="search" type="text" required>
@@ -23,25 +17,35 @@
           <div v-if="visibilidadeTec !== false" class="card card-body">
           <h1>Tecnologias</h1>
           <p class="lead">digite o nome da tecnologia que você deseja pesquisar</p>
-          <input @keyup="getTec" class="form-control" id="searc" type="text" required>
+            <input @keyup="getTec" class="form-control" id="searc" type="text" required>
+     
           </div>
+     
+    </div>
 
-  <div  v-if="user.length !== 0" class="row mt-3"> 
+    <div class="row mt-1">
+
+
+      
+
+  <div  v-if="user.length !== 0" class="row mt-9"> 
     <div class="col-md-4">
       <profile :user="user"/>
     </div>
 
-    <div class="col-md-8">
+    <div class="col-md-7">
       <Repo v-for="repo in repos" :key="repo" :repo="repo"/>
     </div>
+
+    
     </div>
-    <div  v-if="tec.length !== 0" class="row mt-3"> 
+    <div  v-if="tec.length !== 0" class="row mt-9"> 
     <div class="col-md-4">
       <Total :tec="tec"/>
     </div>
 
-    <div class="col-md-8">
-      <Repo v-for="repo in repos" :key="repo" :repo="repo"/>
+    <div class="col-md-7">
+      <ReposTec v-for="reposTec in reposTec" :key="reposTec" :reposTec="reposTec"/>
     </div>
     </div>
 
@@ -51,6 +55,7 @@
 </template>
 <script>
 import Profile from'./components/Profile.vue';
+import ReposTec from'./components/ReposTec.vue';
 import Repo from'./components/Repo.vue';
 import Total from'./components/Total.vue';
 
@@ -79,6 +84,7 @@ export default {
       },
       user:[],
       tec:[],
+      reposTec:[],
       repos:[],
       visibilidadeUser:false,
       visibilidadeTec:false,
@@ -87,7 +93,8 @@ export default {
   components:{
     Profile,
     Repo,
-    Total
+    Total,
+    ReposTec
     
   },
   methods:{
@@ -107,11 +114,12 @@ export default {
 
       axios.get(`${urlTec}/search/repositories?q=language:${tec}&sort=stars&page=1&client_id=${client_id}&client_secret=${client_secret}`) 
       .then(({data})=>this.tec = (this.tec = data))
+      
+      axios.get(`${urlTec}/search/repositories?q=language:${tec}&sort=stars&page=1&client_id=${client_id}&client_secret=${client_secret}`) 
+      .then(({data})=>this.reposTec = data.items)
 
     },
-    determinarNada(){
-      console.log(visibilidadeTec,visibilidadeUser)
-    },
+
     determinarUser(){
       this.visibilidadeUser = true
       this.visibilidadeTec = false
