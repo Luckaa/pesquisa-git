@@ -2,7 +2,7 @@
 <template>
   <div id="app">
         <div>
-      <h5>Pesquisar por  <a @click="determinarUser"  href="#">Usuarios</a> ou 
+      <h5 class="bg-red">Pesquisar por  <a @click="determinarUser"  href="#">Usuarios</a> ou 
     <a @click="determinarTec"  href="#">Tecnologias</a></h5>
   
 
@@ -39,14 +39,15 @@
 
     
     </div>
-    <div  v-if="tec.length !== 0" class="row mt-9"> 
-    <div class="col-md-4">
+    <div  v-if="tec.length !== 0" class="row mt-6"> 
+    <div class="col-md-3">
       <Total :tec="tec"/>
     </div>
 
     <div class="col-md-7">
       <ReposTec v-for="reposTec in reposTec" :key="reposTec" :reposTec="reposTec"/>
-    </div><button @click="proximaPag">Proxima Pag</button>
+      <button  class="btn btn-info" @click="proximaPag">Proxima Página</button>
+    </div>
     </div>
 
 
@@ -87,6 +88,7 @@ export default {
       reposTec:[],
       repos:[],
       pag: 1,
+      tecEscolhida:"",
       visibilidadeUser:false,
       visibilidadeTec:false,
     }
@@ -114,12 +116,13 @@ export default {
       const tec = e.target.value;
       const {pag,urlTec,client_id,client_secret} = this.github
 
-      axios.get(`${urlTec}/search/repositories?q=language:${this.tec}&sort=stars&page=${proximaPag}&client_id=${client_id}&client_secret=${client_secret}`) 
+      axios.get(`${urlTec}/search/repositories?q=language:${this.tecEscolhida}&sort=stars&page=${proximaPag}&client_id=${client_id}&client_secret=${client_secret}`) 
       .then(({data})=>this.reposTec = data.items)
 },
     getTec(e){
       const tec = e.target.value;
       const {pag,urlTec,client_id,client_secret} = this.github
+      this.tecEscolhida = tec
 
       axios.get(`${urlTec}/search/repositories?q=language:${tec}&sort=stars&page=1&client_id=${client_id}&client_secret=${client_secret}`) 
       .then(({data})=>this.tec = (this.tec = data))

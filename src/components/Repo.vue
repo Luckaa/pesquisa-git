@@ -8,6 +8,9 @@
                 <span class="badge badge-primary">Stars: {{repo.stargazers_count}}</span>
                 <span class="badge badge-secondary">Watch: {{repo.watchers_count}}</span>
                 <span class="badge badge-success">Forks: {{repo.forks_count}}</span>
+                <span target="_blank" class="badge badge-danger">Linguagem: {{repo.language}}</span>
+                <span class="badge badge-warning">Favoritar</span>
+
             </div>
         </div>
     </div>

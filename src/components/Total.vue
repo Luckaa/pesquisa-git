@@ -6,6 +6,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Linguagem Selecionada: <span class="badge-success">{{tec.items[0].language}}</span></li>
                         <li class="list-group-item">Repositórios: <span class="badge-primary">{{tec.total_count}}</span></li>
+                        
                     </ul>
                 </div>
             </div>
