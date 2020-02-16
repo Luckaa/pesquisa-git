@@ -46,7 +46,7 @@
 
     <div class="col-md-7">
       <ReposTec v-for="reposTec in reposTec" :key="reposTec" :reposTec="reposTec"/>
-    </div>
+    </div><button @click="proximaPag">Proxima Pag</button>
     </div>
 
 
@@ -86,6 +86,7 @@ export default {
       tec:[],
       reposTec:[],
       repos:[],
+      pag: 1,
       visibilidadeUser:false,
       visibilidadeTec:false,
     }
@@ -108,14 +109,23 @@ export default {
       axios.get(`${urlUser}/${user}/repos?per_page=${count}&sort=${sort}&client_id=${client_id}&client_secret=${client_secret}`)
       .then(({data})=> this.repos = data)
     },
+    proximaPag(e){
+      const proximaPag = this.pag++
+      const tec = e.target.value;
+      const {pag,urlTec,client_id,client_secret} = this.github
+
+      axios.get(`${urlTec}/search/repositories?q=language:${this.tec}&sort=stars&page=${proximaPag}&client_id=${client_id}&client_secret=${client_secret}`) 
+      .then(({data})=>this.reposTec = data.items)
+},
     getTec(e){
       const tec = e.target.value;
-      const {urlTec,client_id,client_secret} = this.github
+      const {pag,urlTec,client_id,client_secret} = this.github
 
       axios.get(`${urlTec}/search/repositories?q=language:${tec}&sort=stars&page=1&client_id=${client_id}&client_secret=${client_secret}`) 
       .then(({data})=>this.tec = (this.tec = data))
+      console.log(tec)
       
-      axios.get(`${urlTec}/search/repositories?q=language:${tec}&sort=stars&page=1&client_id=${client_id}&client_secret=${client_secret}`) 
+      axios.get(`${urlTec}/search/repositories?q=language:${tec}&sort=stars&page=${pag}&client_id=${client_id}&client_secret=${client_secret}`) 
       .then(({data})=>this.reposTec = data.items)
 
     },
