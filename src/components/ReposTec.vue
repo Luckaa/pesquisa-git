@@ -27,7 +27,8 @@ export default {
             let nomeSelecionado = this.reposTec.name
             let autorSelecionado = this.reposTec.owner.login
             let linguagemSelecionado = this.reposTec.language
-            favorito.push(nomeSelecionado,autorSelecionado,linguagemSelecionado)
+            let urlSelecionado = this.reposTec.html_url
+            favorito.push(nomeSelecionado,autorSelecionado,linguagemSelecionado,urlSelecionado)
             console.log(favorito)
         }
     }

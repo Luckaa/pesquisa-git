@@ -6,7 +6,7 @@
     <a @click="determinarTec"  href="#">Tecnologias</a></h5>
   
 
-    <h5>Lista de  <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Favoritos</a></h5>
+    <h5>Lista de  <a href="">Favoritos</a></h5>
 
     <div v-if="visibilidadeUser !== false" class="card card-body">
           <h1>Usuarios</h1>
