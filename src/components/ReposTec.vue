@@ -18,7 +18,6 @@
 const API_URL = "http://localhost:3000/"
 import API from "../lib/API"
 import axios from "axios";
-
 export default {
     
     favorito:{},
@@ -27,14 +26,15 @@ export default {
     
     methods:{
         criarObj(){
-            let favorito = this.favorito
 
-           let favoritoCompleto = JSON.stringify({
+        let favoritoCompleto = JSON.stringify({
                 nome:this.reposTec.name,
                 usuario:this.reposTec.owner.login,
                 linguagem:this.reposTec.language,
-                url:this.reposTec.html_url
-                })
+                url:this.reposTec.html_url})
+                
+
+
  
             console.log(favoritoCompleto)
 
