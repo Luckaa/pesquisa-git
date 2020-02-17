@@ -44,7 +44,7 @@
       <Total :tec="tec"/>
     </div>
 
-    <div class="col-md-7">
+    <div class="col-md-9">
       <ReposTec v-for="reposTec in reposTec" :key="reposTec" :reposTec="reposTec"/>
       <button  class="btn btn-info" @click="proximaPag">Proxima Página</button>
     </div>
@@ -62,7 +62,9 @@ import Total from'./components/Total.vue';
 
 
 import axios from "axios";
+import API from "./lib/API";
 
+const API_URL = "http://localhost:3000/"
 var visibilidadeTec = 0
 var visibilidadeUser = 0
 
@@ -118,7 +120,7 @@ export default {
 
       axios.get(`${urlTec}/search/repositories?q=language:${this.tecEscolhida}&sort=stars&page=${proximaPag}&client_id=${client_id}&client_secret=${client_secret}`) 
       .then(({data})=>this.reposTec = data.items)
-},
+      },
     getTec(e){
       const tec = e.target.value;
       const {pag,urlTec,client_id,client_secret} = this.github
@@ -132,7 +134,6 @@ export default {
       .then(({data})=>this.reposTec = data.items)
 
     },
-
     determinarUser(){
       this.visibilidadeUser = true
       this.visibilidadeTec = false
@@ -145,7 +146,8 @@ export default {
     }
     
   }
-}
+  }
+
 </script>
 
 

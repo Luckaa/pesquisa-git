@@ -3,23 +3,23 @@ import axios from 'axios';
 
 export default {
 
-  //Livros
+  //favs
 
-  getLivros() {
-    return fetch(API_URL + "livros")
+  getFavoritos() {
+    return fetch(API_URL + "favs")
       .then(response => response.json(0))
   },
 
-  deletarLivros(livro) {
+  deletarFavoritos(fav) {
 
-    return axios.delete(API_URL + "livros", {
-        data: livro
+    return axios.delete(API_URL + "favs", {
+        data: fav
       })
       .then(response => response.data)
   },
 
-  adicionarLivros(livro) {
-    return axios.post(API_URL + "livros", livro)
+  adicionarFavoritos(fav) {
+    return axios.post(API_URL + "favs", fav)
       .then(response => response.data)
   },
 
