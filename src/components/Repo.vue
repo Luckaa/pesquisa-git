@@ -22,23 +22,26 @@ import API from "../lib/API"
 import axios from "axios";
 
 export default {
+
     props:['repo'],
+    favorito:[],
+
      methods:{
         criarObj(){
-            let favorito = JSON
+            let favorito = this.favorito
 
-           favorito = JSON.stringify({
+           let favoritoCompleto = JSON.stringify({
                 nome:this.repo.name,
                 usuario:this.repo.owner.login,
                 linguagem:this.repo.language,
                 url:this.repo.html_url
                 })
  
-            console.log(favorito)
+            console.log(favoritoCompleto)
 
-        axios.post(API_URL + "favoritos", favorito.data)
-        .then(data => {
-          console.log(data);
+        axios.post(API_URL + "favoritos", favoritoCompleto)
+        .then(res => {
+          console.log(res);
           console.log("sucesso");
         })
         .catch(err => {

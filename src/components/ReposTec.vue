@@ -15,6 +15,10 @@
 </template>
 <script>
 
+const API_URL = "http://localhost:3000/"
+import API from "../lib/API"
+import axios from "axios";
+
 export default {
     
     favorito:{},
@@ -23,13 +27,25 @@ export default {
     
     methods:{
         criarObj(){
-            let favorito = []
-            let nomeSelecionado = this.reposTec.name
-            let autorSelecionado = this.reposTec.owner.login
-            let linguagemSelecionado = this.reposTec.language
-            let urlSelecionado = this.reposTec.html_url
-            favorito.push(nomeSelecionado,autorSelecionado,linguagemSelecionado,urlSelecionado)
-            console.log(favorito)
+            let favorito = this.favorito
+
+           let favoritoCompleto = JSON.stringify({
+                nome:this.reposTec.name,
+                usuario:this.reposTec.owner.login,
+                linguagem:this.reposTec.language,
+                url:this.reposTec.html_url
+                })
+ 
+            console.log(favoritoCompleto)
+
+        axios.post(API_URL + "favoritos", favoritoCompleto)
+        .then(res => {
+          console.log(res);
+          console.log("sucesso");
+        })
+        .catch(err => {
+          console.log(err);
+        });  
         }
     }
     

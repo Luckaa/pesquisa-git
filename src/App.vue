@@ -4,10 +4,7 @@
         <div>
       <h5 class="bg-red">Pesquisar por  <a @click="determinarUser"  href="#">Usuarios</a> ou 
     <a @click="determinarTec"  href="#">Tecnologias</a></h5>
-  
-
-    <h5>Lista de  <a href="">Favoritos</a></h5>
-
+    
     <div v-if="visibilidadeUser !== false" class="card card-body">
           <h1>Usuarios</h1>
           <p class="lead">digite o nome do usuario que você deseja pesquisar</p>
